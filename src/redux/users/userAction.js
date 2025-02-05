@@ -39,7 +39,8 @@ export const fetchApiNews = () => {
                     image: article.urlToImage,
                     title: article.title,
                     description: article.description,
-                    source: article.source.name,
+                    category: "",
+                    source: "BBC",
                     author: article.author,
                     published: article.publishedAt,
                     url: article.url
@@ -49,7 +50,8 @@ export const fetchApiNews = () => {
                     image: "",
                     title: article.webTitle,
                     description: article.webTitle,
-                    source: article.pillarName,
+                    category: article.pillarName,
+                    source: "Guardian",
                     author: "",
                     published: article.webPublicationDate,
                     url: article.webUrl

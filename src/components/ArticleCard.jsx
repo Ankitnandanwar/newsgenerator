@@ -17,7 +17,13 @@ const ArticleCard = ({ article }) => {
                     <p className='font-normal text-gray-700 dark:text-gray-400 text-sm'>{article.description}</p>
 
                     <div className='py-2 flex flex-col gap-1 my-2'>
-                        <div><p className='text-gray-800 text-sm font-semibold'>Source: <span className='underline'>{article.source}</span></p></div>
+                        <div>
+                            {
+                                article.category ? (<p className='text-gray-800 text-sm font-semibold'>Category: <span className='underline'>{article.category}</span></p>) :
+                                (<p className='text-gray-800 text-sm font-semibold'>Category: <span className='underline'>No category</span></p>)
+                            }
+                            
+                        </div>
                         {
                             article.author ? (<div><p className='text-gray-800 text-sm font-semibold'>Author: <span>{article.author}</span></p></div>) :
                                 (<div><p className='text-gray-800 text-sm font-semibold'>Author: <span>No author</span></p></div>)

@@ -14,8 +14,9 @@ const Home = () => {
     const dispatch = useDispatch()
 
     const [filterData, setFilterData] = useState([])
-
-
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectNewsDate, setSelectNewsDate] = useState('')
+    const [selectSource, setSelectSource] = useState('')
 
     useEffect(() => {
         dispatch(fetchApiNews())
@@ -36,7 +37,27 @@ const Home = () => {
             filteredNews = filteredNews.filter((item) => 
             item.title.toLowerCase().includes(search.toLowerCase()))
         }
+        if(selectedCategory){
+            filteredNews = filteredNews.filter((item) =>
+                item.category.toLowerCase().includes(selectedCategory.toLowerCase()))
+        }
+        if(selectNewsDate){
+            filteredNews = filteredNews.filter((item) =>
+                item.published.includes(selectNewsDate))
+        }
+        if(selectSource){
+            filteredNews = filteredNews.filter((item) =>
+                item.source.toLowerCase().includes(selectSource.toLowerCase()))
+        }
         setFilterData(filteredNews)
+    }
+
+    const handleReset = () => {
+        setShowFilter(false)
+        setSearch('')
+        setSelectedCategory('')
+        setSelectNewsDate('')
+        setSelectSource('')
     }
 
     useEffect(() => {
@@ -45,7 +66,7 @@ const Home = () => {
 
     useEffect(() => {
         filterNews()
-    }, [search])
+    }, [search, selectedCategory, selectNewsDate, selectSource])
     
 
 
@@ -87,29 +108,33 @@ const Home = () => {
 
                         <div className='lg:flex flex-col lg:flex-row gap-8'>
                             <div className='lg:my-0 my-2'>
-                                <select className='border-2 border-gray-300 text-sm px-2 py-1'>
-                                    <option value="Category">Category</option>
-                                    <option value="politics">Politics</option>
-                                    <option value="sports">Sports</option>
-                                    <option value="technology">Technology</option>
+                                <select className='border-2 border-gray-300 text-sm px-2 py-1'
+                                value={selectedCategory}
+                                onChange={(e) => setSelectedCategory(e.target.value)}>
+                                    <option value="">Category</option>
+                                    <option value="News">News</option>
+                                    <option value="Sport">Sports</option>
+                                    <option value="Arts">Arts</option>
                                 </select>
                             </div>
 
                             <div className='lg:my-0 my-2'>
-                                <input type="date" name="" id="" className='border-2 border-gray-300 text-sm px-2 py-1' />
+                                <input type="date" value={selectNewsDate} onChange={(e)=>setSelectNewsDate(e.target.value)} className='border-2 border-gray-300 text-sm px-2 py-1' />
                             </div>
 
                             <div className='lg:my-0 my-2'>
-                                <select className='border-2 border-gray-300 text-sm px-2 py-1'>
-                                    <option value="source">Source</option>
-                                    <option value="bbc">BBC</option>
-                                    <option value="theGuardian">The Guardian</option>
-                                    <option value="nytimes">NY Times</option>
+                                <select className='border-2 border-gray-300 text-sm px-2 py-1'
+                                value={selectSource}
+                                onChange={(e) => setSelectSource(e.target.value)}>
+                                    <option value="">Source</option>
+                                    <option value="BBC">BBC</option>
+                                    <option value="Guardian">The Guardian</option>
+                                    {/* <option value="nytimes">NY Times</option> */}
                                 </select>
                             </div>
 
                             <div className='lg:my-0 my-2'>
-                                <button className='bg-[#ee1b8e] text-white text-sm px-2 py-1'>Reset</button>
+                                <button className='bg-[#ee1b8e] text-white text-sm px-2 py-1' onClick={handleReset}>Reset</button>
                             </div>
                         </div>
                     </div>
