@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Oswald', sans-serif;
+}
+
+/* a::after {
+  @apply absolute content-[''] w-0 h-[1.6px] -bottom-[5px] left-0 bg-[#00ff21] duration-500;
+}
+
+a.active {
+  @apply text-[#00ff21];
+}
+
+a.active::after {
+  @apply block w-3/4;
+}
+
+a:hover::after {
+  @apply w-3/4;
+} */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 4px rgb(231, 231, 231);
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(230, 230, 230);
+  border-radius: 10px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: white;
+  
+}
+
+.swiper-pagination-bullet {
+  background-color: white;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 30px;
+  color: white;
+}
+
+main {
+  padding-top: 80px;
+}
+
+@media screen and (max-width: 578px) {
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 25px;
+  }
+
+  a.active::after {
+    @apply block w-1/6;
+  }
+  
+  a:hover::after {
+    @apply w-1/2;
+  }
+}
+
+
+
