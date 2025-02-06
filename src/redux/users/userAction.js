@@ -27,8 +27,11 @@ export const fetchApiNews = () => {
     return dispatch => {
         dispatch(fetchUserRequest())
 
-        const newsApiUrl = "https://newsapi.org/v2/everything?q=bitcoin&apiKey=73a086982df64763890c1146b4d05f2b"
-        const guardianApiUrl = "https://content.guardianapis.com/search?api-key=23f1050c-7d3c-49ac-b1f5-d4e1543df724"
+        const bbcApiKey = import.meta.env.VITE_NEWS_API_KEY;
+        const guardianApiKey = import.meta.env.VITE_GUARDIAN_API_KEY;
+
+        const newsApiUrl = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${bbcApiKey}`
+        const guardianApiUrl = `https://content.guardianapis.com/search?api-key=${guardianApiKey}`
 
         Promise.all([
             axios.get(newsApiUrl),
